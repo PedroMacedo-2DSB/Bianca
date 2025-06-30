@@ -38,4 +38,25 @@ if(isGameOver) moveSnake(); // move a snake
 //limpar o intervalo se a direção mudar
 return () => clearInterval(moveInterval.current);
 }, [direction]);
+const renderCell = (x,y) => {
+//ver se a posição é a mesma cobrinha
+const isSnake = snake.some(cell => cell.x === x && cell.y ===y)
+return (
+<View
+key={'$(x)-$(y)'}
+style={[styles.cell, isSnake && styles.snake]}
+/>
+);
+};
+st renderGrid = () =>{
+let rows = [];
+//variável condição encremento
+for (let y =0;y < GRID_SIZE; y++){
+let row = [];
+for(let x; x <GRID_SIDE; x++){
+row.push(renderCell(x,y));
+}
+row.push(<View key={y} style={style.row}</View)
+}
+return rows;
 })
